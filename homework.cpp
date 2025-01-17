@@ -19,6 +19,19 @@ bool isPrime(int N)
     return 1;
 }
 
+double averageList(std::vector<double> x)
+{
+    double sum;
+    int index = 0;
+    while (index < length(x))
+    {
+        sum = x[index] + sum;
+        index = index + 1;
+    }
+    sum = sum/length(x);
+    return sum;
+}
+
 std::vector<double> quadForm(double a, double b, double c)
 {
     std::vector<double> x = {};
@@ -36,27 +49,64 @@ std::vector<double> quadForm(double a, double b, double c)
     }
     {
         x.push_back(0);
-        x.push_back(-99999);
         return x;
     }
 }
 
+
+
 int main()
 {
-    double num1, num2, num3;
-    std::cin >> num1 >> num2 >> num3;
+    std::vector<double> randList = {};
+    double tempX;
+    std::string tempY;
+    bool repeat = true;
+
+    std::cout << "Enter numbers to average, enter any letter to get average";
+
+    while (repeat == true)
+    {
+        std::getline(std::cin, tempY);
+        std::istringstream iss(tempY);
+        if (iss >> tempX) 
+        {
+            randList.push_back(tempY);
+        } else 
+        {
+            repeat = false;
+        }
+        std::cout << averageList(randList) << std::endl;
+    } 
     
     
-    std::vector<double> x = quadForm(num1, num2, num3);
-    if (x[0] == 2)
-    {
-        std::cout << "There are 2 real solutions: " << x[1] << " and " << x[2] << "\n";
-    } else if (x[0] == 1)
-    {
-        std::cout << "There is 1 real solutions: " << x[1]  << "\n";
-    } else if (x[0] == 0)   
-    {
-        std::cout << "There are no real solutions\n";
-    }
+    
+    
+    
+    // double num1, num2, num3;
+    // bool yesNo;
+    // bool rpt = true;
+    // while (rpt == true) 
+    // {
+    //     std::cout << "3 nums, a b c, quadratic formula\n";
+    //     std::cin >> num1 >> num2 >> num3;
+        
+    //     std::vector<double> x = quadForm(num1, num2, num3);
+    //     if (x[0] == 2)
+    //     {
+    //         std::cout << "There are 2 real solutions: " << x[1] << " and " << x[2] << "\n";
+    //     } else if (x[0] == 1)
+    //     {
+    //         std::cout << "There is 1 real solutions: " << x[1]  << "\n";
+    //     } else if (x[0] == 0)   
+    //     {
+    //         std::cout << "There are no real solutions\n";
+    //     }
+    //     std::cout << "Again?\n";
+    //     std::cin >> yesNo;
+    //     if (yesNo == 0)
+    //     {
+    //        rpt = false; 
+    //     }
+    // }
     return 0;
 }
